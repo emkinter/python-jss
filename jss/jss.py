@@ -99,7 +99,7 @@ class JSSPrefs(object):
                     prefs = plistlib.readPlist(preferences_file)
             try:
                 self.user = prefs['jss_user']
-                self.password = prefs['jss_pass']
+                self.password = prefs['jss_password']
                 self.url = prefs['jss_url']
             except KeyError:
                 raise JSSPrefsMissingKeyError("Please provide all required"
