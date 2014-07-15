@@ -95,7 +95,8 @@ class JSSPrefs(object):
                 try:
                     prefs = plistlib.readPlist(preferences_file)
                 except ExpatError:
-                    subprocess.call(['plutil', '-convert', 'xml1', preferences_file])
+                    subprocess.call(['plutil', '-convert', 'xml1',
+                                     preferences_file])
                     prefs = plistlib.readPlist(preferences_file)
             try:
                 self.user = prefs['jss_user']
@@ -629,7 +630,7 @@ class JSSObject(ElementTree.Element):
                     elem.text += pad
             count = 0
             for kid in elem:
-                self._indent(kid, level+1, count < num_kids - 1)
+                self._indent(kid, level + 1, count < num_kids - 1)
                 count += 1
             if not elem.tail or not elem.tail.strip():
                 elem.tail = i
@@ -814,8 +815,8 @@ class JSSDeviceObject(JSSContainerObject):
 class JSSFlatObject(JSSObject):
     """Subclass for JSS objects which do not return a list of objects.
 
-    These objects have in common that they cannot be created. They can, however,
-    be updated.
+    These objects have in common that they cannot be created. They can,
+    however, be updated.
 
     """
     search_types = {}
@@ -1305,7 +1306,8 @@ class Policy(JSSContainerObject):
     def add_package(self, pkg):
         """Add a jss.Package object to the policy with action=install."""
         if isinstance(pkg, Package):
-            package = self.add_object_to_path(pkg, "package_configuration/packages")
+            package = self.add_object_to_path(pkg,
+                                              "package_configuration/packages")
             action = ElementTree.SubElement(package, "action")
             action.text = "Install"
 
